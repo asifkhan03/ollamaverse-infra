@@ -18,3 +18,16 @@ resource "aws_subnet" "public" {
     Name = "${var.project}-${var.environment}-public-subnet-${element(["a","b","c"], count.index)}"
   })
 }
+
+# Private Subnets
+resource "aws_subnet" "private" {
+  count             = length(var.private_subnet_cidrs)
+  vpc_id            = aws_vpc.vpcblock.id
+  cidr_block        = var.private_subnet_cidrs[count.index]
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
+  tags = merge(var.tags, {
+    Type = "Private"
+    Name = "${var.project}-${var.environment}-private-subnet-${element(["a","b","c"], count.index)}"
+  })
+}
