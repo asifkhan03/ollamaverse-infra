@@ -32,7 +32,6 @@ resource "aws_subnet" "private" {
   })
 }
 
-
 # Data Subnets
 resource "aws_subnet" "data" {
   count             = length(var.data_subnet_cidrs)

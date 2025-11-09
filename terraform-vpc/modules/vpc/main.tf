@@ -12,7 +12,6 @@ resource "aws_vpc" "vpcblock" {
 
 data "aws_availability_zones" "available" {}
 
-#creates the IGW and attaches it to the VPC
 resource "aws_internet_gateway" "igwblock" {
   vpc_id = aws_vpc.vpcblock.id
   tags = merge({
