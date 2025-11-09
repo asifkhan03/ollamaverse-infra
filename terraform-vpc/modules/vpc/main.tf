@@ -9,3 +9,5 @@ resource "aws_vpc" "vpcblock" {
     Project     = var.project
   }, var.tags)
 }
+
+data "aws_availability_zones" "available" {}
